@@ -25,8 +25,6 @@ body{
 
 
 
-
-
 /* 영화 검색 영역 */
 .head-container{
     padding: 15px;
@@ -39,8 +37,15 @@ body{
     align-items: center;
 }
 
-.head-container h1{
-    position: relative;
+.head-container h1 a{
+    text-decoration: none;
+    color:black;
+    padding-left: 10px;
+}
+
+.head-container h1 a i{
+    color:rgb(81, 110, 239);
+    padding-right: 5px;
 }
 
 .head-container span{

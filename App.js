@@ -6,10 +6,11 @@ let title = document.getElementById('title');
 let cateBtn = document.getElementById('cate-btn');
 let category = document.querySelector('.category');
 let Body = document.querySelector('body');
-cateBtn?.addEventListener('click', () => {
-    let categoryState = category.style.display;
-    categoryState === 'none' ? category.style.display = 'flex' : category.style.display = 'none';
-});
+if (cateBtn instanceof HTMLElement)
+    cateBtn.addEventListener('click', () => {
+        let categoryState = category.style.display;
+        categoryState === 'none' ? category.style.display = 'flex' : category.style.display = 'none';
+    });
 if (search instanceof HTMLElement)
     search.addEventListener('keydown', (e) => {
         if (search instanceof HTMLInputElement) {
