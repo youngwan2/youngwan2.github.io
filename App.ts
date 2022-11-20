@@ -37,7 +37,7 @@ button.forEach((btnEl)=>{
         } else if(btnEl.textContent ==='한국영화'){
             koreanMovie();
         } else{
-            foreignMovie();
+            oldMovie();
         }
     });
  });
@@ -116,8 +116,8 @@ const koreanMovie=()=>{
     Deduplication();
 }
 
-//외국영화
-const foreignMovie=()=>{
+//고전영화
+const oldMovie=()=>{
     if(title instanceof HTMLElement) title.innerHTML ='고전영화';
     url=new URL('https://api.themoviedb.org/3/discover/movie?api_key=dd5b2707a7e0bb5f2a03f34ba3f049bc&language=ko&sort_by=release_date.asc&include_adult=false&include_video=false&page=1&with_original_language=&with_watch_monetization_types=flatrate')
     Deduplication();
