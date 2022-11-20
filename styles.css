@@ -112,9 +112,9 @@ body{
 .main-popular {
     padding-top: 95px;
     height: 100vh;
-    padding-left: 15px;
+    padding-left: 10px;
     background-color: rgb(188, 105, 233);
-    margin-left: 85px;
+    margin-left: 35px;
 }
 
 .main-container{
@@ -126,7 +126,7 @@ body{
 }
 .main-container .main-img img{
     height: 350px;
-    width: 350px;
+    width: 380px;
 }
 
 .main-container .main-img #title{
