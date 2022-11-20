@@ -30,10 +30,26 @@ body{
     text-align: center;
 }
 
-.head-container .category div{
+.head-container .category button{
     float: left;
-    padding: 15px;
+    padding: 10px 15px 10px 10px;
+    border: hidden;
+    font-size: 1rem; font-weight: bold;
+    background-color: gold;
 }
+
+.head-container .category button:hover{
+    border-bottom: 1px solid black;
+    border-radius: 10px;
+    color:rgb(233, 127, 127)
+}
+
+.head-container .category button:focus{
+    border-bottom: 1px solid black;
+    border-radius: 10px;
+    color:rgb(216, 24, 24)
+}
+    
 
 .head-container .search-box #search{
     padding: 15px 15px 15px 15px; border-radius: 10px;
