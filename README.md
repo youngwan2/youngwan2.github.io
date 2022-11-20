@@ -9,5 +9,5 @@
 
 
 ■ 링크
-https://movieseacrch.netlify.app/
-youngwan2.github.io
+- https://movieseacrch.netlify.app/
+- youngwan2.github.io
