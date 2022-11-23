@@ -93,7 +93,7 @@ const Deduplication = async () => {
 const modalShift = (title, date, vote, overview) => {
     let modal = modalContainer.style.display;
     modal == 'none' ? modalContainer.style.display = 'flex' : modalContainer.style.display = 'none';
-    if (overview[0] == '') {
+    if (overview == '') {
         modalContainer.innerHTML = `
      <div class="modal-box">
          <p>□ 제목: ${title}</p>

@@ -103,7 +103,7 @@ const modalShift=(title:string,date:string,vote:string,overview:string)=>{
      modal =='none' ? modalContainer.style.display='flex': modalContainer.style.display='none'
 
 
-    if(overview[0] ==''){
+    if(overview ==''){
      modalContainer.innerHTML=`
      <div class="modal-box">
          <p>□ 제목: ${title}</p>
