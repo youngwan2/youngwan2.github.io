@@ -6,6 +6,7 @@ let title = document.getElementById('title');
 let cateBtn = document.getElementById('cate-btn');
 let category = document.querySelector('.category');
 let Body = document.querySelector('body');
+let modalContainer = document.querySelector('.modal-container');
 if (cateBtn instanceof HTMLElement)
     cateBtn.addEventListener('click', () => {
         let categoryState = category.style.display;
@@ -17,6 +18,7 @@ if (search instanceof HTMLElement)
             let searchVal = search.value;
             if (e.keyCode === 13) {
                 searchMovie(searchVal);
+                modalContainer.style.display = 'none';
             }
             ;
         }
@@ -34,7 +36,7 @@ button.forEach((btnEl) => {
             koreanMovie();
         }
         else {
-            foreignMovie();
+            oldMovie();
         }
     });
 });
@@ -44,13 +46,20 @@ const Deduplication = async () => {
         let response = await fetch(url);
         let data = await response.json();
         let result = data.results;
+        console.log(result);
         let status = response.status;
         let totalPages = data.total_pages;
+        console.log(result.overview);
         let contentHTML = '';
         result.map((el, i) => {
             return (contentHTML +=
                 `<div class="main-img">
-                <div><img src="https://image.tmdb.org/t/p/w500${result[i].poster_path}"></img></div>
+                <div>
+                   <img 
+                      onclick='modalShift("${result[i].title}","${result[i].release_date}","${result[i].vote_average}","${result[i].overview}")'
+                      src="https://image.tmdb.org/t/p/original/${result[i].poster_path}"
+                      alt="영화이미지"></img>
+                </div>
                 <div class="title" id="title">${result[i].title}</div>
                 <div class="title" id="title-date">(${result[i].release_date})</div>
             </div>`);
@@ -63,6 +72,7 @@ const Deduplication = async () => {
             if (totalPages == 0) {
                 throw new Error('검색된 자료가 존재하지 않습니다.');
             }
+            ;
         }
         else {
             throw new Error(`${status}`);
@@ -76,6 +86,30 @@ const Deduplication = async () => {
                 `<div class='error'>${error}</div>`;
         }
         ;
+    }
+    ;
+};
+//영화 디테일 정보 모달창
+const modalShift = (title, date, vote, overview) => {
+    let modal = modalContainer.style.display;
+    modal == 'none' ? modalContainer.style.display = 'flex' : modalContainer.style.display = 'none';
+    if (overview[0] == '') {
+        modalContainer.innerHTML = `
+     <div class="modal-box">
+         <p>□ 제목: ${title}</p>
+         <p>□ 개봉날짜: ${date}</p>
+         <p>□ 평점: ${vote}</p>
+         <p>□ 줄거리:</br> <span>줄거리 정보가 존재하지 않습니다.</span> </p>
+     </div>`;
+    }
+    else {
+        modalContainer.innerHTML = `
+     <div class="modal-box">
+         <p>□ 제목: ${title}</p>
+         <p>□ 개봉날짜: ${date}</p>
+         <p>□ 평점: ${vote}</p>
+         <p>□ 줄거리:</br>${overview}</p>
+     </div>`;
     }
     ;
 };
@@ -101,8 +135,8 @@ const koreanMovie = () => {
     url = new URL('https://api.themoviedb.org/3/discover/movie?api_key=dd5b2707a7e0bb5f2a03f34ba3f049bc&language=ko&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_original_language=ko&with_watch_monetization_types=flatrate');
     Deduplication();
 };
-//외국영화
-const foreignMovie = () => {
+//고전영화
+const oldMovie = () => {
     if (title instanceof HTMLElement)
         title.innerHTML = '고전영화';
     url = new URL('https://api.themoviedb.org/3/discover/movie?api_key=dd5b2707a7e0bb5f2a03f34ba3f049bc&language=ko&sort_by=release_date.asc&include_adult=false&include_video=false&page=1&with_original_language=&with_watch_monetization_types=flatrate');
@@ -115,3 +149,11 @@ const searchMovie = (searchVal) => {
     url = new URL(`https://api.themoviedb.org/3/search/movie?api_key=dd5b2707a7e0bb5f2a03f34ba3f049bc&language=ko&query=${searchVal}&page=1`);
     Deduplication();
 };
+// ---- 임시 저장
+// <div class="modal-box">
+// <p><span>⊙ 제목:</span></p>
+// <p><span>⊙ 평점:</span></p>
+// <p><span>⊙ 장르:</span></p>
+// <p><span>⊙ 개봉날짜:</span></p>
+// <p><span>⊙ 줄거리:</span></p>
+// </div>
