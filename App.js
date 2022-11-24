@@ -7,11 +7,14 @@ let cateBtn = document.getElementById('cate-btn');
 let category = document.querySelector('.category');
 let Body = document.querySelector('body');
 let modalContainer = document.querySelector('.modal-container');
+let overviewContainer = document.querySelector('.overview-container');
+// 카테고리(삼지창) 버튼 클릭 시 드롭다운 
 if (cateBtn instanceof HTMLElement)
     cateBtn.addEventListener('click', () => {
         let categoryState = category.style.display;
         categoryState === 'none' ? category.style.display = 'flex' : category.style.display = 'none';
     });
+//인풋창 입력 후 엔터 시 실행되는 클릭 이벤트 함수
 if (search instanceof HTMLElement)
     search.addEventListener('keydown', (e) => {
         if (search instanceof HTMLInputElement) {
@@ -24,6 +27,7 @@ if (search instanceof HTMLElement)
         }
         ;
     });
+//  메뉴 클릭 시 해당 영화 api를 호출
 button.forEach((btnEl) => {
     btnEl.addEventListener('click', () => {
         if (btnEl.textContent === '인기영화') {
@@ -38,8 +42,10 @@ button.forEach((btnEl) => {
         else {
             oldMovie();
         }
+        ;
     });
 });
+// 공통 코드 저장 함수
 let url;
 const Deduplication = async () => {
     try {
@@ -49,14 +55,13 @@ const Deduplication = async () => {
         console.log(result);
         let status = response.status;
         let totalPages = data.total_pages;
-        console.log(result.overview);
         let contentHTML = '';
         result.map((el, i) => {
             return (contentHTML +=
                 `<div class="main-img">
                 <div>
                    <img 
-                      onclick='modalShift("${result[i].title}","${result[i].release_date}","${result[i].vote_average}","${result[i].overview}")'
+                      onclick='modalShift("${result[i].title}","${result[i].release_date}","${result[i].vote_average}",${result[i].id})'
                       src="https://image.tmdb.org/t/p/original/${result[i].poster_path}"
                       alt="영화이미지"></img>
                 </div>
@@ -90,30 +95,29 @@ const Deduplication = async () => {
     ;
 };
 //영화 디테일 정보 모달창
-const modalShift = (title, date, vote, overview) => {
+const modalShift = (title, date, vote, id) => {
+    console.log(id);
     let modal = modalContainer.style.display;
     modal == 'none' ? modalContainer.style.display = 'flex' : modalContainer.style.display = 'none';
-    if (overview == '') {
-        modalContainer.innerHTML = `
+    modalContainer.innerHTML = `
+     <div onclick="modalClose()" class="modal-overlay"></div>
      <div class="modal-box">
-         <p>□ 제목: ${title}</p>
-         <p>□ 개봉날짜: ${date}</p>
-         <p>□ 평점: ${vote}</p>
-         <p>□ 줄거리:</br> <span>줄거리 정보가 존재하지 않습니다.</span> </p>
+         <p>♤ 제목: ${title}</p>
+         <p>♤ 개봉날짜: ${date}</p>
+         <p>♤ 평점: ${vote}</p>
+         <p>♤ 줄거리:</br>
+             <a class='overview-rink'
+                href="./overview.html">[ 줄거리 보러가기 ]</p>
      </div>`;
-    }
-    else {
-        modalContainer.innerHTML = `
-     <div class="modal-box">
-         <p>□ 제목: ${title}</p>
-         <p>□ 개봉날짜: ${date}</p>
-         <p>□ 평점: ${vote}</p>
-         <p>□ 줄거리:</br>${overview}</p>
-     </div>`;
+};
+// 클래스 modal-overlay인 div 태그 클릭 시 모달창을 닫는 함수
+const modalClose = () => {
+    if (modalContainer.style.display === 'flex') {
+        modalContainer.style.display = 'none';
     }
     ;
 };
-//인기영화
+//인기영화(메인화면)
 const popularMoive = () => {
     if (title instanceof HTMLElement)
         title.innerHTML = '인기영화';

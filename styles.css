@@ -18,28 +18,49 @@ body{
     font-size: 3em ;
 }
 
+/* 모달창 오버레이(뒷 배경 색 ) */
+.modal-overlay{
+    position: fixed;
+    background-color: gray;
+    opacity: 40%;
+    z-index: 1;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
 
-/* 모달창 */
+
+/* 모달창 컨테이너 */
 .modal-container{
     position: fixed;
-    top: 500px;
-    width: 100%;  height: 500px;
-    text-align:justify;
-    line-height: 30px;
-    background-color: rgb(255, 218, 137);
+    top: 550px;
+    width: 100%;  height: 600px;
+    line-height: 40px;
+    background-color: rgb(47, 44, 50);
+    border-radius: 17px;
     display: none;
-    font-size: 15px;
-    border-radius: 15px;
-    animation-name: modal;
-    animation-duration: 1s;
+    font-size: 16px; font-weight: bold;
+    animation-name: modal;  animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
 }
 
+/* 모달창 콘텐츠 영역 */
 .modal-container .modal-box{
-    width: 90%;
+    z-index: 2;
+    border-radius: 15px;
+    background-color: rgb(0, 0, 0); color:rgb(255, 255, 255);
+    width: 100%;
+    position: relative;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 20px;  padding-top: 0;
+    padding: 50px; margin-top: 1rem;
+    padding-top: 20px;
+}
+
+/* 모달창 줄거리 링크 */
+.modal-container .overview-rink{
+    text-decoration: none;
+    background-color: gold; border-radius: 1px;
+    color:black;
+    font-size: 16px;
 }
 
 
@@ -53,6 +74,7 @@ body{
 
 /* 영화 검색 영역 */
 .head-container{
+    z-index: 2;
     padding: 15px;
     text-align: center;
     display: flex;
@@ -81,7 +103,7 @@ body{
 }
 
 .head-container #search{
-    width: 35vw;
+    width: 40vw;
     position: relative;
     right: 0.25rem;
     padding: 15px 15px 15px 15px; border-radius: 10px;
@@ -246,10 +268,6 @@ body{
 
 
 
-
-
-
-
 /* 미디어 쿼리 */
 
 
@@ -334,5 +352,7 @@ body{
 
 .head-container h1{
     font-size: 25px;
+    position: relative;
+    left: -15px;
     }
 }
