@@ -14,10 +14,15 @@
 그러나 일부 모달창의 경우 Uncaught SyntaxError: Invalid or unexpected token 에러가 뜨면서 이벤트가 실행되지 않음
 원인으로는 함수(" ) 와 같이 큰 따옴표가 누락되어서 라고 하는데, 이런저런 수정을 해봐도 해결되지 않음
 향후 에러를 개선하고 페이지네이션을 추가할 예정.
-- 2022년 12월 11일 : 페이지네이션 기능 구현, 자잘한 에러처리 및 UI 수정 등 실시
+- 2022년 12월 11일 : 페이지네이션 기능 구현, 자잘한 에러처리 및 UI 수정 등 실시 , 22년 11월 23일 경에 발생했던 에러문제 현재 진행중
 
 
 
 ■ 링크
 - https://movieseacrch.netlify.app/
 - youngwan2.github.io
+
+■ 스크린샷
+
+![영화앱이미지(pc)](https://user-images.githubusercontent.com/107159871/206890206-3ada400d-592c-4e4e-b745-031d4ca91b62.PNG)
+![영화앱이미지](https://user-images.githubusercontent.com/107159871/206890208-3c4b03bf-2a0c-431c-80e6-323ec6ad343e.PNG)
